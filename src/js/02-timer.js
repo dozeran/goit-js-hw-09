@@ -39,7 +39,7 @@ function startCountdown(timeDifference) {
       setTime(convertMs(timeDifference));
       timeDifference -= 1000;
     } else {
-      Notify.success("Time's up!");
+      Notify.success('Time is up!');
       clearInterval(countdownId);
     }
   }, 1000);
