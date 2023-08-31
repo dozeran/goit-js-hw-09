@@ -7,17 +7,18 @@ const refs = {
   form: document.querySelector('.form'),
 };
 
-let delay = Number(refs.firstDelay.value);
-const step = Number(refs.delayStep.value);
-const amount = Number(refs.amount.value);
-
 refs.form.addEventListener('submit', onSubmit);
 
 function onSubmit(e) {
   e.preventDefault();
 
+  let delay = Number(refs.firstDelay.value);
+  let step = Number(refs.delayStep.value);
+  let amount = Number(refs.amount.value);
+  let position = 0;
+
   for (let i = 1; i <= amount; i += 1) {
-    let position = i;
+    position = i;
 
     createPromise(position, delay)
       .then(({ position, delay }) => {
@@ -29,6 +30,7 @@ function onSubmit(e) {
 
     delay += step;
   }
+  form.reset();
 }
 
 function createPromise(position, delay) {
@@ -38,9 +40,9 @@ function createPromise(position, delay) {
     setTimeout(() => {
       if (shouldResolve) {
         resolve({ position, delay });
-      } else {
-        reject({ position, delay });
       }
+
+      reject({ position, delay });
     }, delay);
   });
 }
