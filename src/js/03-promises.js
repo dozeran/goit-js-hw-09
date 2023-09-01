@@ -30,7 +30,7 @@ function onSubmit(e) {
 
     delay += step;
   }
-  form.reset();
+  refs.form.reset();
 }
 
 function createPromise(position, delay) {
